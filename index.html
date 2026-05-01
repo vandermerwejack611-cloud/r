@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero V5 — Simphiwe Mtetwa | CSI Platform</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --lime: #c4d82e;
+            --green: #1a4d3e;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* =====================
+           LOADER
+        ===================== */
+        .loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #0a0a0a;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .loader-logo {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+        }
+
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.08);
+            border-top-color: var(--lime);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* =====================
+           PROGRESS BAR
+        ===================== */
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            background: var(--lime);
+            z-index: 100;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 12px rgba(196, 216, 46, 0.6);
+        }
+
+        /* =====================
+           SWIPER CORE
+        ===================== */
+        .swiper {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .swiper-slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Cinematic overlay */
+        .swiper-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                105deg,
+                rgba(0,0,0,0.88) 0%,
+                rgba(0,0,0,0.5) 45%,
+                rgba(0,0,0,0.25) 100%
+            );
+            z-index: 1;
+        }
+
+        /* Dark slide (no image) */
+        .swiper-slide.slide-dark {
+            background: #080808;
+        }
+
+        .swiper-slide.slide-dark::before {
+            background: none;
+        }
+
+        /* Ken Burns */
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center right;
+            transform: scale(1.08);
+            transition: transform 7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .swiper-slide-active .slide-bg {
+            transform: scale(1);
+        }
+
+        /* =====================
+           SLIDE CONTENT
+        ===================== */
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 10% 120px;
+        }
+
+        .content-left {
+            max-width: 680px;
+            color: #fff;
+        }
+
+        .slide-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--lime);
+            margin-bottom: 24px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(196, 216, 46, 0.3);
+            transform: translateY(25px);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .slide-title {
+            font-size: clamp(36px, 5.5vw, 78px);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -1.5px;
+            margin-bottom: 28px;
+            transform: translateY(35px);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+        }
+
+        .slide-title .highlight {
+            color: var(--lime);
+        }
+
+        .slide-desc {
+            font-size: 16px;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.75);
+            max-width: 520px;
+            margin-bottom: 40px;
+            font-weight: 300;
+            transform: translateY(25px);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+        }
+
+        .slide-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            transform: translateY(25px);
+            opacity: 0;
+            transition: border-color 0.35s ease, background 0.35s ease,
+                        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+                        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+        }
+
+        .slide-cta:hover {
+            background: var(--lime);
+            border-color: var(--lime);
+            color: var(--green);
+        }
+
+        .slide-cta i {
+            font-size: 11px;
+            transition: transform 0.3s ease;
+        }
+
+        .slide-cta:hover i { transform: translateX(4px); }
+
+        /* Animate in on active */
+        .swiper-slide-active .slide-tag,
+        .swiper-slide-active .slide-title,
+        .swiper-slide-active .slide-desc,
+        .swiper-slide-active .slide-cta {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* =====================
+           RIGHT TIMELINE NAV
+        ===================== */
+        .timeline-container {
+            position: fixed;
+            right: 55px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(-6px);
+        }
+
+        .t-label {
+            color: rgba(255,255,255,0.4);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            min-width: 90px;
+            text-align: right;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item.active .t-label,
+        .timeline-item:hover .t-label {
+            color: #fff;
+        }
+
+        .t-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: transparent;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item.active .t-dot,
+        .timeline-item:hover .t-dot {
+            background: var(--lime);
+            border-color: var(--lime);
+            transform: scale(1.4);
+            box-shadow: 0 0 16px rgba(196, 216, 46, 0.5);
+        }
+
+        .t-line {
+            width: 30px;
+            height: 1.5px;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item.active .t-line,
+        .timeline-item:hover .t-line {
+            background: var(--lime);
+            width: 50px;
+        }
+
+        /* =====================
+           BOTTOM NAV ARROWS
+        ===================== */
+        .nav-arrows {
+            position: fixed;
+            bottom: 50px;
+            left: 10%;
+            z-index: 50;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            width: 48px;
+            height: 48px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: var(--lime);
+            border-color: var(--lime);
+            color: var(--green);
+        }
+
+        /* Slide counter */
+        .slide-counter {
+            position: fixed;
+            bottom: 62px;
+            left: calc(10% + 130px);
+            z-index: 50;
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .slide-counter .current {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: fixed;
+            bottom: 55px;
+            right: 55px;
+            z-index: 50;
+            color: rgba(255,255,255,0.35);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .scroll-hint::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Logo watermark */
+        .slide-logo {
+            position: fixed;
+            top: 38px;
+            left: 10%;
+            z-index: 50;
+        }
+
+        .slide-logo img {
+            height: 55px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.85;
+        }
+
+        /* =====================
+           RESPONSIVE
+        ===================== */
+        @media (max-width: 1024px) {
+            .timeline-container { right: 25px; }
+            .t-label { min-width: 70px; font-size: 9px; }
+            .slide-content { padding: 0 8% 120px; }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container {
+                bottom: 30px;
+                top: auto;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                flex-direction: row;
+                gap: 18px;
+            }
+
+            .timeline-item { flex-direction: column; gap: 6px; }
+            .t-label { display: none; }
+            .t-line { display: none; }
+
+            .slide-content { padding: 0 6% 160px; }
+
+            .slide-title { font-size: 34px; letter-spacing: -0.5px; }
+            .slide-desc { display: none; }
+
+            .nav-arrows { left: 50%; transform: translateX(-50%); bottom: 80px; }
+            .slide-counter { display: none; }
+            .scroll-hint { display: none; }
+            .slide-logo { top: 20px; left: 6%; }
+            .slide-logo img { height: 42px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">Simphiwe Mtetwa</div>
+            <div class="loader-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar" style="width: 25%"></div>
+
+    <!-- Logo -->
+    <div class="slide-logo">
+        <img src="https://www.image2url.com/r2/default/images/1777216092994-c7e885df-05b1-48e6-b802-69a615cb8fff.png" alt="Simphiwe Mtetwa">
+    </div>
+
+    <!-- Main Swiper -->
+    <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+
+            <!-- SLIDE 1: Social Justice -->
+            <div class="swiper-slide">
+                <img
+                    src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-12-scaled.jpg"
+                    alt="Inequality"
+                    class="slide-bg">
+                <div class="slide-content">
+                    <div class="content-left">
+                        <span class="slide-tag">Social Justice</span>
+                        <h1 class="slide-title">
+                            Why Inequality<br>
+                            Persists: The<br>
+                            <span class="highlight">Masters' Deal</span>
+                        </h1>
+                        <p class="slide-desc">
+                            Slaves made a deal with their masters — and the children of those slaves continue to uphold it. A critical exploration of South Africa's structural inequality and what it will take to break the cycle.
+                        </p>
+                        <a href="#" class="slide-cta">Read Analysis <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: Strategic Vision -->
+            <div class="swiper-slide">
+                <img
+                    src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-10-scaled.jpg"
+                    alt="Vision 2052"
+                    class="slide-bg">
+                <div class="slide-content">
+                    <div class="content-left">
+                        <span class="slide-tag">Strategic Vision</span>
+                        <h1 class="slide-title">
+                            A 25-Year<br>
+                            Vision<br>
+                            <span class="highlight">In Motion</span>
+                        </h1>
+                        <p class="slide-desc">
+                            South Africa's corporate social investment landscape is being reshaped. Simphiwe Mtetwa charts a bold, evidence-based vision for where CSI must go over the next quarter century.
+                        </p>
+                        <a href="#" class="slide-cta">Explore Vision <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Economic Impact (dark card) -->
+            <div class="swiper-slide slide-dark">
+                <div class="slide-content">
+                    <div class="content-left">
+                        <span class="slide-tag">Economic Impact</span>
+                        <h1 class="slide-title">
+                            Unemployment Is<br>
+                            Costing South Africa<br>
+                            <span class="highlight">Half a Trillion Rand</span>
+                        </h1>
+                        <p class="slide-desc">
+                            South Africa's unemployment crisis is no longer simply a labour market problem. It is the defining challenge of our generation — requiring systemic transformation, not incremental reform.
+                        </p>
+                        <a href="#" class="slide-cta">Read Report <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: The Podcast -->
+            <div class="swiper-slide">
+                <img
+                    src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-11-scaled.jpg"
+                    alt="The Podcast"
+                    class="slide-bg">
+                <div class="slide-content">
+                    <div class="content-left">
+                        <span class="slide-tag">The Podcast</span>
+                        <h1 class="slide-title">
+                            Conversations That<br>
+                            Shape The Future<br>
+                            <span class="highlight">of CSI</span>
+                        </h1>
+                        <p class="slide-desc">
+                            Deep, candid conversations with Africa's most influential voices on corporate social investment, leadership, mental health, and the human cost of systemic inequality.
+                        </p>
+                        <a href="#" class="slide-cta">Listen Now <i class="fas fa-headphones"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Right Timeline Nav -->
+    <div class="timeline-container" id="timelineContainer"></div>
+
+    <!-- Bottom Arrows -->
+    <div class="nav-arrows">
+        <button class="nav-btn" id="prevBtn"><i class="fas fa-arrow-left"></i></button>
+        <button class="nav-btn" id="nextBtn"><i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <span class="current" id="currentNum">01</span> / 04
+    </div>
+
+    <!-- Scroll Hint -->
+    <div class="scroll-hint">Scroll to explore</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const slideData = [
+            { label: 'Social Justice' },
+            { label: 'Vision 2052' },
+            { label: 'Economic Impact' },
+            { label: 'The Podcast' }
+        ];
+
+        const total = slideData.length;
+
+        // Build timeline items
+        const timelineContainer = document.getElementById('timelineContainer');
+        slideData.forEach((item, index) => {
+            const el = document.createElement('div');
+            el.className = `timeline-item ${index === 0 ? 'active' : ''}`;
+            el.dataset.index = index;
+            el.innerHTML = `
+                <span class="t-label">${item.label}</span>
+                <div class="t-dot"></div>
+                <div class="t-line"></div>
+            `;
+            el.addEventListener('click', () => swiper.slideTo(index));
+            timelineContainer.appendChild(el);
+        });
+
+        // Init Swiper
+        const swiper = new Swiper('.main-swiper', {
+            speed: 1100,
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            mousewheel: { enabled: true, sensitivity: 4 },
+            keyboard: { enabled: true },
+            grabCursor: true,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            on: {
+                init(sw) {
+                    updateUI(sw.activeIndex);
+                    hideLoader();
+                },
+                slideChange(sw) {
+                    updateUI(sw.activeIndex);
+                }
+            }
+        });
+
+        function updateUI(index) {
+            // Timeline
+            document.querySelectorAll('.timeline-item').forEach((el, i) => {
+                el.classList.toggle('active', i === index);
+            });
+
+            // Progress bar
+            const pct = ((index + 1) / total) * 100;
+            document.getElementById('progressBar').style.width = pct + '%';
+
+            // Counter
+            document.getElementById('currentNum').textContent =
+                String(index + 1).padStart(2, '0');
+        }
+
+        // Arrows
+        document.getElementById('prevBtn').addEventListener('click', () => swiper.slidePrev());
+        document.getElementById('nextBtn').addEventListener('click', () => swiper.slideNext());
+
+        // Loader
+        function hideLoader() {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 600);
+        }
+
+        // Keyboard left/right
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') swiper.slidePrev();
+            else if (e.key === 'ArrowRight') swiper.slideNext();
+        });
+
+        // Touch swipe fallback
+        let touchStartX = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        document.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (diff > 60) swiper.slideNext();
+            else if (diff < -60) swiper.slidePrev();
+        });
+    </script>
+</body>
+</html>
