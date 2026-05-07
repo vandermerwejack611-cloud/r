@@ -9,19 +9,30 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: DM Serif Display & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ============================================
-           SIMPHIWE MTETWA - PREMIUM CSI PLATFORM
-           Design System: Finovate-Inspired
-           Color Palette: Professional Green + Lime Accent
+           SIMPHIWE MTETWA - REBRANDED DESIGN SYSTEM
+           Inspired by Rechtdoorzee (High-End, Editorial, Dark)
            ============================================ */
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #151515;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --accent-lime: #c4d82e;
+            --accent-lime-hover: #b5cc28;
+            --radius-pill: 100px;
+            --radius-card: 40px;
+            --font-serif: 'DM Serif Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            --nav-height: 80px;
+        }
 
         * {
             margin: 0;
@@ -29,2599 +40,580 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-green: #1a4d3e;
-            --primary-dark: #153d32;
-            --lime-green: #c4d82e;
-            --lime-hover: #b5cc28;
-            --dark-text: #1a1a1a;
-            --light-gray: #f5f5f5;
-            --medium-gray: #e0e0e0;
-            --white: #ffffff;
-            --accent-teal: #4e676b;
-
-            /* Vamtam Icon Variables */
-            --vamtam-icon-nav: '\e906';
-            --vamtam-icon-close: '\e90c';
-            --vamtam-icon-search: '\e902';
-            --vamtam-icon-arrow-dawn: '\e912';
-            --vamtam-icon-arrow-up: '\e910';
-        }
-
-        @font-face {
-            font-family: 'vamtam-theme';
-            src: url(https://finovate.vamtam.com/wp-content/themes/finovate/vamtam/assets/fonts/theme-icons/theme-icons.woff2) format('woff2'),
-                url(https://finovate.vamtam.com/wp-content/themes/finovate/vamtam/assets/fonts/theme-icons/theme-icons.woff) format('woff');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        .vamtamtheme- {
-            font-family: 'vamtam-theme' !important;
-            speak: never;
-            font-style: normal;
-            font-weight: normal;
-            font-variant: normal;
-            text-transform: none;
-            line-height: 1;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .vamtam-theme-nav::before {
-            content: var(--vamtam-icon-nav);
-        }
-
-        .vamtam-theme-close::before {
-            content: var(--vamtam-icon-close);
-        }
-
-        .vamtam-theme-search::before {
-            content: var(--vamtam-icon-search);
-        }
-
-        .vamtam-theme-arrow-dawn::before {
-            content: var(--vamtam-icon-arrow-dawn);
-        }
-
-        .vamtam-theme-arrow-up::before {
-            content: var(--vamtam-icon-arrow-up);
-        }
-
         body {
-            font-family: 'Helvetica', 'BlinkMacSystemFont', -apple-system, 'Roboto', 'Lucida Sans', sans-serif;
-            color: var(--dark-text);
-            line-height: 1.7;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
             overflow-x: hidden;
-            background: var(--white);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ============================================
-           NAVIGATION SYSTEM
-           ============================================ */
-
-        .top-nav {
-            background: transparent;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            padding: 30px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid transparent;
-        }
-
-        .top-nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 18px 0;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: none;
-            margin: 0;
-            padding: 0 10vw 0 10vw;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 25px;
-            }
-        }
-
-        .nav-right-wrap {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 85px;
-            width: auto;
-            transition: transform 0.3s;
-            animation: pulseFade 4s ease-in-out infinite;
-        }
-
-
-        .logo:hover img {
-            transform: scale(1.03);
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 48px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .main-nav>li {
-            position: relative;
-        }
-
-        .main-nav>li>a {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .main-nav>li>a:hover {
-            color: var(--lime-green);
-        }
-
-        .top-nav.scrolled .main-nav>li>a {
-            color: var(--dark-text);
-        }
-
-        .top-nav.scrolled .nav-icon,
-        .top-nav.scrolled #mobileToggle,
-        .top-nav.scrolled .elementor-icon {
-            color: var(--dark-text);
-        }
-
-        /* Premium Mega Dropdown */
-        .main-nav>li {
-            position: static;
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            background: var(--white);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            border-radius: 0 0 16px 16px;
-            padding: 40px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border-top: 4px solid var(--primary-green);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            z-index: 999;
-        }
-
-        .main-nav>li:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown li {
-            list-style: none;
-            margin-bottom: 8px;
-        }
-
-        .dropdown li a {
-            display: block;
-            padding: 8px 0;
-            color: #444;
-            text-decoration: none;
-            font-size: 15px;
-            transition: all 0.2s;
-            font-weight: 500;
-            border-bottom: 1px solid transparent;
-        }
-
-        .dropdown li a:hover {
-            color: var(--primary-green);
-            border-bottom-color: var(--lime-green);
-            padding-left: 10px;
-        }
-
-        /* Elementor Icon Widget Styles */
-        .elementor-widget-icon {
-            display: inline-block;
-        }
-
-        .elementor-icon-wrapper {
-            display: flex;
-            justify-content: center;
-        }
-
-        .elementor-icon {
-            display: inline-block;
-            line-height: 1;
-            -webkit-transition: all .3s;
-            transition: all .3s;
-            color: var(--primary-green);
-            font-size: 20px;
-            padding: 15px;
-            border-radius: 50%;
-            background-color: var(--light-gray);
-            text-decoration: none;
-        }
-
-        .elementor-icon:hover {
-            background-color: var(--lime-green);
-            color: var(--primary-green);
-            transform: scale(1.1);
-        }
-
-        .elementor-view-stacked .elementor-icon {
-            background-color: var(--primary-green);
-            color: var(--white);
-        }
-
-        .elementor-view-stacked .elementor-icon:hover {
-            background-color: var(--lime-green);
-            color: var(--primary-green);
-        }
-
-        #mobileToggle {
-            background-color: transparent;
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav-icon {
-            cursor: pointer;
-            color: #ffffff;
-            font-size: 18px;
-            transition: all 0.3s;
-        }
-
-        .nav-icon:hover {
-            color: var(--lime-green);
-        }
-
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .mobile-toggle span {
-            width: 24px;
-            height: 2.5px;
-            background: var(--dark-text);
-            transition: all 0.3s;
-        }
-
-        /* ============================================
-           HERO SECTION - PORTFOLIO SLIDER STYLE
-           ============================================ */
-
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .hero-slider {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            z-index: 1;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-            z-index: 5;
-            visibility: visible;
-        }
-
-        .slide-dark {
-            background: #111 !important;
-        }
-
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center right;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
-            z-index: 3;
-        }
-
-        .hero-content {
-            max-width: 1100px;
-            padding: 0 5vw 0 10vw;
-            text-align: left;
-            padding-top: 120px;
-            width: 100%;
-        }
-
-        .hero-title {
-            margin-bottom: 0;
-        }
-
-        .hero-kicker {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(14px, 1.5vw, 18px);
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .hero-title {
-            font-size: clamp(22px, 3vw, 42px);
-            font-weight: 600;
-            color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.15;
-            margin-bottom: 0;
-        }
-
-        .hero-deal {
-            font-size: clamp(40px, 7vw, 100px);
-            font-weight: 800;
-            color: var(--lime-green);
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1;
-            display: block;
-        }
-
-        .hero-title a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .hero-title a:hover {
-            opacity: 0.9;
-        }
-
-        .color-accent-4 {
-            color: var(--lime-green);
-            display: inline-block;
-        }
-
-        /* Slide 3 Specific: Solid Black */
-        .hero-slide.slide-dark {
-            background: #0a0a0a;
-        }
-
-        .hero-slide.slide-dark .hero-overlay {
-            background: none;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--lime-green);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.1;
             margin-bottom: 20px;
-            font-family: 'Inter', sans-serif;
         }
 
-        .hero-slide .btn-line {
-            margin-top: 35px;
+        h1 { font-size: clamp(48px, 8vw, 100px); letter-spacing: -1px; }
+        h2 { font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.5px; }
+        h3 { font-size: clamp(28px, 4vw, 48px); }
+
+        .italic-accent {
+            font-style: italic;
+            color: var(--text-muted);
         }
 
-        /* ============================================
-           LINE BUTTON WITH ARROW ON HOVER
-           ============================================ */
+        .kicker {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-lime);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
 
+        .kicker-pill {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 16px 34px;
-            border-radius: 30px;
-            border: none;
-            font-size: 14.5px;
+            padding: 16px 32px;
+            border-radius: var(--radius-pill);
+            font-family: var(--font-sans);
+            font-size: 15px;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
             text-decoration: none;
-            font-family: 'DM Sans', sans-serif;
-            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .btn-primary {
-            background: var(--primary-green);
-            color: var(--white);
+            background: var(--accent-lime);
+            color: var(--bg-dark);
+            border: 1px solid var(--accent-lime);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(26, 77, 62, 0.3);
+            background: var(--text-main);
+            border-color: var(--text-main);
+            transform: translateY(-2px);
         }
 
-        .btn-lime {
-            background: var(--lime-green);
-            color: var(--primary-green);
-        }
-
-        .btn-lime:hover {
-            background: var(--lime-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(196, 216, 46, 0.4);
-        }
-
-        /* LINE BUTTON - Text with underline + arrow reveal */
-        .btn-line {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0;
+        .btn-outline {
             background: transparent;
-            color: var(--white);
-            border: none;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            position: relative;
-            padding-bottom: 8px;
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* The underline line */
-        .btn-line::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--lime-green);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background: var(--text-main);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
         }
 
-        /* Arrow icon (hidden by default) */
-        .btn-line .arrow-icon {
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
-            font-size: 14px;
-            color: var(--lime-green);
-        }
-
-        /* Hover state */
-        .btn-line:hover {
-            color: var(--lime-green);
-        }
-
-        .btn-line:hover::after {
-            width: 100%;
-            background: var(--lime-green);
-        }
-
-        .btn-line:hover .arrow-icon {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* ============================================
-           HERO TABS - SWAPPED LAYOUT
-           Progress Bar ON TOP, Text AT BOTTOM
-           ============================================ */
-
-        .hero-tabs {
-            position: absolute;
-            bottom: 40px;
-            left: 10vw;
+        .icon-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
             display: flex;
-            gap: 30px;
-            z-index: 10;
-            width: calc(100% - 20vw);
-        }
-
-        .hero-tab {
-            flex: 1;
-            cursor: pointer;
-            padding-top: 15px;
-            padding-bottom: 8px;
-            position: relative;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-            display: flex;
-            flex-direction: column-reverse;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .btn:hover .icon-circle {
+            transform: rotate(45deg);
         }
 
-        .hero-tab.active {
-            color: #ffffff;
-        }
-
-        .hero-tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .tab-progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--lime-green);
-            transition: width 0.1s linear;
-            z-index: 2;
-        }
-
-        .hero__scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            right: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: #ffffff;
-            z-index: 10;
-            cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .hero__scroll-indicator:hover {
-            opacity: 1;
-        }
-
-        .hero__scroll-text {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            writing-mode: vertical-lr;
-            margin-bottom: 5px;
-        }
-
-        .hero__scroll-indicator .icon-chevron-down {
-            font-size: 18px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(5px);
-            }
-
-            60% {
-                transform: translateY(3px);
-            }
-        }
-
-        /* Ken Burns Effect for Hero Images */
-        .hero-slide img {
-            transition: transform 6s ease;
-        }
-
-        .hero-slide.active img {
-            transform: scale(1.1);
-        }
-
-        /* Side Panel Drawer & Backdrop */
-        .side-panel-backdrop {
+        /* Floating Navigation */
+        .floating-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            height: 70px;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-pill);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
             transition: all 0.4s ease;
         }
 
-        .side-panel-backdrop.active {
-            opacity: 1;
-            visibility: visible;
+        .floating-header.scrolled {
+            top: 15px;
+            background: rgba(10, 10, 10, 0.85);
+            width: 95%;
         }
 
-        .side-panel {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            max-width: 450px;
-            height: 100%;
-            background: var(--white);
-            z-index: 2001;
-            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1);
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .side-panel.active {
-            transform: translateX(0);
-        }
-
-        .side-panel-close {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            color: var(--primary-green);
-            font-size: 24px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--light-gray);
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-
-        .side-panel-close:hover {
-            background: var(--lime-green);
-            transform: rotate(90deg);
-        }
-
-        .side-panel-logo {
-            margin-bottom: 40px;
-        }
-
-        .side-panel-logo img {
-            height: 100px;
+        .nav-logo img {
+            height: 32px;
             width: auto;
-            transition: transform 0.3s;
-            animation: pulseFade 4s ease-in-out infinite;
         }
 
-        @keyframes pulseFade {
-            0%, 100% {
-                opacity: 0.85;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.04);
-            }
-        }
-
-
-        .side-panel-content h3 {
-            font-family: 'Georgia', serif;
-            font-size: 28px;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        .side-panel-contact {
-            margin-top: 30px;
-        }
-
-        .side-panel-contact-item {
-            margin-bottom: 25px;
-        }
-
-        .side-panel-contact-item h4 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-teal);
-            margin-bottom: 8px;
-        }
-
-        .side-panel-contact-item p {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--primary-dark);
-        }
-
-        .side-panel-cta {
-            margin-top: auto;
-            padding-top: 40px;
-        }
-
-        .side-panel-cta .btn {
-            width: 100%;
-            padding: 18px;
-            justify-content: center;
-        }
-
-        .side-panel-nav {
-            margin-top: 40px;
-            border-top: 1px solid var(--medium-gray);
-            padding-top: 30px;
-        }
-
-        .side-panel-nav ul {
+        .nav-links {
+            display: flex;
+            gap: 30px;
             list-style: none;
         }
 
-        .side-panel-nav li {
-            margin-bottom: 15px;
-        }
-
-        .side-panel-nav a {
-            color: var(--dark-text);
+        .nav-links a {
+            color: var(--text-main);
             text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
-        .side-panel-nav a:hover {
-            color: var(--primary-green);
+        .nav-links a:hover {
+            color: var(--accent-lime);
         }
 
-        /* Side Panel staggered entry animation - Slower & Smoother */
-        .side-panel > *:not(.side-panel-close),
-        .side-panel-content > *,
-        .side-panel-contact > *,
-        .side-panel-nav li {
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-toggle span {
+            width: 16px;
+            height: 2px;
+            background: var(--text-main);
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 200px 5% 100px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title-wrap {
+            max-width: 1000px;
+            margin-bottom: 60px;
+            z-index: 2;
+        }
+
+        .hero-media {
+            width: 100%;
+            max-width: 1400px;
+            height: 70vh;
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(40px);
+            opacity: 0;
+            animation: slideUpFade 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
+        }
+
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+            transition: transform 10s ease;
+        }
+
+        .hero-media:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Editorial Split Section */
+        .editorial-split {
+            padding: 120px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .editorial-img {
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            height: 700px;
+        }
+
+        .editorial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .editorial-content p {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        /* Horizontal Testimonials (Rechtdoorzee Style) */
+        .testimonial-section {
+            padding: 120px 0;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: var(--radius-card);
+            margin: 0 2%;
+        }
+
+        .testimonial-header {
+            padding: 0 5%;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .testimonial-slider-wrapper {
+            position: relative;
+            padding-left: 5%;
+            width: 100%;
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: grab;
+        }
+
+        .testimonial-track:active {
+            cursor: grabbing;
+        }
+
+        .testimonial-card {
+            flex: 0 0 70vw;
+            max-width: 900px;
+            background: var(--bg-dark);
+            border-radius: 32px;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .testimonial-quote {
+            font-family: var(--font-serif);
+            font-size: clamp(24px, 3vw, 36px);
+            line-height: 1.3;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Custom Slider Controls */
+        .slider-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .slider-btn {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-dark);
+        }
+
+        /* Large CTA Footer */
+        .massive-cta {
+            padding: 150px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .massive-cta h2 {
+            font-size: clamp(50px, 10vw, 140px);
+            margin-bottom: 40px;
+            white-space: nowrap;
+        }
+
+        /* Animations */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .side-panel.active > *:not(.side-panel-close),
-        .side-panel.active .side-panel-content > *,
-        .side-panel.active .side-panel-contact > *,
-        .side-panel.active .side-panel-nav li {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Refined Staggered Delays for buttery sequence */
-        .side-panel.active .side-panel-logo { transition-delay: 0.4s; }
-        .side-panel.active .side-panel-content h3 { transition-delay: 0.5s; }
-        .side-panel.active .side-panel-content p { transition-delay: 0.6s; }
-        
-        .side-panel.active .side-panel-contact-item:nth-child(1) { transition-delay: 0.7s; }
-        .side-panel.active .side-panel-contact-item:nth-child(2) { transition-delay: 0.8s; }
-        .side-panel.active .side-panel-contact-item:nth-child(3) { transition-delay: 0.9s; }
-
-        .side-panel.active .side-panel-nav li:nth-child(1) { transition-delay: 1.0s; }
-        .side-panel.active .side-panel-nav li:nth-child(2) { transition-delay: 1.1s; }
-        .side-panel.active .side-panel-nav li:nth-child(3) { transition-delay: 1.2s; }
-        .side-panel.active .side-panel-nav li:nth-child(4) { transition-delay: 1.3s; }
-        
-        .side-panel.active .side-panel-cta { transition-delay: 1.4s; }
-
-        /* ============================================
-           WEF IMPACT SECTION - BRAND COLORS + 10% PADDING
-           ============================================ */
-
-        .wef-impact-section {
-            padding: 96px 0 112px;
-            background: #ffffff;
-            position: relative;
-        }
-
-        /* Container - 10% PADDING EACH SIDE */
-        .wef-container {
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0 10%;
-            box-sizing: border-box;
-        }
-
-        /* ===== HERO SPLIT SECTION ===== */
-        .wef-hero-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 72px;
-            align-items: center;
-            margin-bottom: 80px;
-        }
-
-        /* Typography - Brand fonts */
-        .wef-hero-text {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .wef-headline {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(32px, 3.5vw, 52px);
-            font-weight: 700;
-            line-height: 1.15;
-            color: var(--dark-text);
-            margin: 0;
-            letter-spacing: -0.02em;
-        }
-
-        /* Link button - Brand style with lime accent */
-        .wef-link-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--primary-green);
-            text-decoration: none;
-            transition: gap 0.25s ease, color 0.25s ease;
-            align-self: flex-start;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
-            padding-bottom: 8px;
-        }
-
-        .wef-link-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--lime-green);
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .wef-link-btn:hover {
-            gap: 14px;
-            color: var(--lime-green);
-        }
-
-        .wef-link-btn:hover::after {
-            width: 100%;
-        }
-
-        .wef-link-btn svg {
-            flex-shrink: 0;
-            transition: transform 0.25s ease;
-            stroke: var(--lime-green);
-        }
-
-        .wef-link-btn:hover svg {
-            transform: translateX(3px);
-        }
-
-        /* ===== VIDEO PLAYER ===== */
-        .wef-video-wrapper {
-            width: 100%;
-        }
-
-        .wef-video-card {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            background: #000;
-        }
-
-        .wef-video-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .wef-video-card:hover .wef-video-img {
-            transform: scale(1.04);
-        }
-
-        .wef-video-darken {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.45) 100%);
-            pointer-events: none;
-        }
-
-        /* Play button - white circle with lime hover */
-        .wef-play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: #ffffff;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 24px rgba(26, 77, 62, 0.25);
-            color: var(--dark-text);
-        }
-
-        .wef-play-btn:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            background: var(--lime-green);
-            box-shadow: 0 12px 35px rgba(196, 216, 46, 0.4);
-        }
-
-        .wef-video-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            color: #ffffff;
-            z-index: 2;
-        }
-
-        /* ===== TABS NAVIGATION ===== */
-        .wef-tabs-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 32px;
-            margin-bottom: 64px;
-            flex-wrap: wrap;
-        }
-
-        .wef-tabs-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark-text);
-        }
-
-        .wef-tabs-group {
-            display: flex;
-            gap: 0;
-            background: var(--light-gray);
-            padding: 5px;
-            border-radius: 28px;
-        }
-
-        /* Tab buttons - pill shape with brand colors */
-        .wef-tab {
-            padding: 11px 26px;
-            border: none;
-            background: transparent;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--dark-text);
-            cursor: pointer;
-            border-radius: 24px;
-            transition: all 0.25s ease;
-            white-space: nowrap;
-        }
-
-        .wef-tab:hover {
-            background: rgba(26, 77, 62, 0.08);
-            color: var(--primary-green);
-        }
-
-        .wef-tab-active {
-            background: var(--primary-dark);
-            color: var(--white);
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(26, 77, 62, 0.2);
-        }
-
-        .wef-tab-active:hover {
-            background: var(--primary-green);
-            color: var(--white);
-        }
-
-        /* ===== CONTENT GRID: Sidebar + Cards ===== */
-        .wef-grid-layout {
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 56px;
-            align-items: start;
-        }
-
-        /* Sidebar / Intro column */
-        .wef-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: sticky;
-            top: 100px;
-        }
-
-        .wef-sidebar-tag {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--accent-teal);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .wef-sidebar-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 1.25;
-            color: var(--dark-text);
-            margin: 0;
-        }
-
-        .wef-sidebar-desc {
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #666666;
-            margin: 0;
-        }
-
-        /* Cards grid area - ONE LINE HORIZONTAL */
-        .wef-cards-area {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        /* Individual card */
-        .wef-card {
-            position: relative;
-            aspect-ratio: 3 / 4;
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            background: var(--medium-gray);
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
-        }
-
-        .wef-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 45px rgba(26, 77, 62, 0.18);
-        }
-
-        .wef-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .wef-card:hover img {
-            transform: scale(1.06);
-        }
-
-        .wef-card-gradient {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-            pointer-events: none;
-            transition: height 0.35s ease;
-        }
-
-        .wef-card:hover .wef-card-gradient {
-            height: 70%;
-        }
-
-        .wef-card-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 22px 18px;
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 17px;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--white);
-            z-index: 1;
-        }
-
-        /* ===== RESPONSIVE BREAKPOINTS - Maintain 10% Padding ===== */
-        @media (max-width: 1280px) {
-            .wef-container {
-                padding: 0 8%;
-            }
-
-            .wef-grid-layout {
-                grid-template-columns: 340px 1fr;
-                gap: 44px;
-            }
-
-            .wef-cards-area {
-                grid-template-columns: repeat(4, 1fr);
-                overflow-x: auto;
-            }
-        }
-
         @media (max-width: 1024px) {
-            .wef-impact-section {
-                padding: 72px 0 88px;
-            }
-
-            .wef-container {
-                padding: 0 6%;
-            }
-
-            .wef-hero-split {
-                grid-template-columns: 1fr;
-                gap: 48px;
-                margin-bottom: 64px;
-            }
-
-            .wef-grid-layout {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .wef-sidebar {
-                position: static;
-            }
-
-            .wef-tabs-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-                margin-bottom: 48px;
-            }
-
-            .wef-cards-area {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .wef-impact-section {
-                padding: 56px 0 72px;
-            }
-
-            .wef-container {
-                padding: 0 5%;
-            }
-
-            .wef-headline {
-                font-size: clamp(28px, 6vw, 38px);
-            }
-
-            .wef-tabs-label {
-                font-size: 20px;
-            }
-
-            .wef-sidebar-title {
-                font-size: 24px;
-            }
-
-            .wef-cards-area {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 12px;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .wef-cards-area::-webkit-scrollbar {
-                height: 6px;
-            }
-
-            .wef-cards-area::-webkit-scrollbar-track {
-                background: #f1f1f1;
-                border-radius: 3px;
-            }
-
-            .wef-cards-area::-webkit-scrollbar-thumb {
-                background: #888;
-                border-radius: 3px;
-            }
-
-            .wef-tabs-group {
-                width: 100%;
-                flex-wrap: wrap;
-            }
-
-            .wef-tab {
-                flex: 1;
-                text-align: center;
-                min-width: fit-content;
-            }
-        }
-
-        /* ============================================
-           SCROLLING NEWS BANNER - PARALLAX EFFECT
-           ============================================ */
-
-        .news-banner-container {
-            width: 100%;
-            background: var(--white);
-            padding: 40px 0;
-            overflow: hidden;
-            border-top: 1px solid var(--medium-gray);
-            border-bottom: 1px solid var(--medium-gray);
-            white-space: nowrap;
-            position: relative;
-            z-index: 5;
-        }
-
-        .news-scroll-track {
-            display: inline-flex;
-            gap: 60px;
-            will-change: transform;
-            /* Auto-scroll removed for mouse scroll control */
-        }
-
-        .news-banner-container:hover .news-scroll-track {
-            animation-play-state: paused;
-        }
-
-        .news-item {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(40px, 8vw, 110px);
-            font-weight: 900;
-            text-transform: uppercase;
-            color: var(--primary-green);
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            opacity: 1;
-            letter-spacing: -2px;
-        }
-
-        /* Outline text effect for some items to add depth */
-        .news-item.outline {
-            color: transparent;
-            -webkit-text-stroke: 1.5px var(--primary-green);
-        }
-
-        .news-dot {
-            width: 15px;
-            height: 15px;
-            background: var(--lime-green);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        /* ============================================
-           SPOTLIGHT SECTION - PREMIUM EDITORIAL
-           ============================================ */
-
-        .spotlight-section {
-            display: grid;
-            grid-template-columns: 50% 50%;
-            background: var(--white);
-            position: relative;
-            margin-top: 40px;
-        }
-
-
-
-        @media (max-width: 1024px) {
-            .spotlight-section {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* LEFT SIDE - STICKY FEATURED */
-        .spotlight-sticky {
-            position: sticky;
-            top: 100px; /* Offset for fixed navigation */
-            height: calc(100vh - 100px);
-            overflow: hidden;
-            background: var(--primary-green);
-        }
-
-        @media (max-width: 1024px) {
-            .spotlight-sticky {
-                position: relative;
-                height: 75vh;
-            }
-        }
-
-        .spotlight-sticky-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .spotlight-sticky:hover .spotlight-sticky-img {
-            transform: scale(1.08);
-        }
-
-        .spotlight-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 10% 10% 8% 10vw;
-            background: linear-gradient(to top, rgba(26, 77, 62, 0.9) 0%, transparent 70%);
-            color: var(--white);
-        }
-
-        @media (max-width: 1024px) {
-            .spotlight-overlay {
-                padding: 40px 10%;
-            }
-        }
-
-        .spotlight-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--lime-green);
-            margin-bottom: 20px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .spotlight-label::before {
-            content: '';
-            width: 30px;
-            height: 2px;
-            background: var(--lime-green);
-        }
-
-        .spotlight-main-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 30px;
-            letter-spacing: -1px;
-        }
-
-        /* RIGHT SIDE - SCROLLING GRID */
-        .spotlight-scrollable {
-            padding: 120px 10% 120px 80px;
-            background: #ffffff;
-        }
-
-        @media (max-width: 1280px) {
-            .spotlight-scrollable {
-                padding: 100px 8% 100px 60px;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .spotlight-scrollable {
-                padding: 80px 10%;
-            }
-        }
-
-        .spotlight-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 60px 40px;
-        }
-
-        @media (max-width: 640px) {
-            .spotlight-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .spotlight-item {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            cursor: pointer;
-            group: spotlight;
-        }
-
-        .spotlight-img-box {
-            position: relative;
-            aspect-ratio: 4 / 5;
-            overflow: hidden;
-            border-radius: 8px;
-            background: var(--light-gray);
-        }
-
-        .spotlight-cat-tag {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--white);
-            color: var(--primary-green);
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            z-index: 10;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .spotlight-item:hover .spotlight-cat-tag {
-            background: var(--primary-green);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .spotlight-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        /* Modern reveal effect */
-        .spotlight-img-box::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--primary-green);
-            opacity: 0;
-            mix-blend-mode: multiply;
-            transition: opacity 0.4s ease;
-        }
-
-        .spotlight-item:hover .spotlight-img-box img {
-            transform: scale(1.1);
-        }
-
-        .spotlight-item:hover .spotlight-img-box::after {
-            opacity: 0.3;
-        }
-
-        .spotlight-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .spotlight-meta {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-teal);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .spotlight-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--dark-text);
-            transition: color 0.3s;
-        }
-
-        .spotlight-item:hover .spotlight-title {
-            color: var(--primary-green);
-        }
-
-        .spotlight-desc {
-            font-size: 15px;
-            color: #555;
-            line-height: 1.7;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .spotlight-footer {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid var(--medium-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .spotlight-count {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            color: #999;
-        }
-
-        /* ============================================
-           FOUNDATION GRID SECTION
-           ============================================ */
-        .foundation-section {
-            padding: 120px 0;
-            background: #ffffff;
-        }
-
-        .foundation-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 80px;
-            margin-top: 64px;
-        }
-
-        .foundation-card {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding-right: 20px;
-        }
-
-        .foundation-card-img {
-            width: 100%;
-            height: 220px;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 8px;
-            background: var(--light-gray);
-        }
-
-        .foundation-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .foundation-card:hover .foundation-card-img img {
-            transform: scale(1.08);
-        }
-
-        .foundation-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--primary-green);
-            line-height: 1.2;
-        }
-
-        .foundation-card p {
-            font-size: 17px;
-            line-height: 1.7;
-            color: #444;
-            margin: 0;
-        }
-
-        .foundation-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            color: var(--primary-green);
-            text-decoration: none;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            margin-top: auto;
-            padding-top: 10px;
-        }
-
-        .foundation-link svg {
-            transition: transform 0.3s ease;
-        }
-
-        .foundation-link:hover {
-            color: var(--lime-green);
-        }
-
-        .foundation-link:hover svg {
-            transform: translateX(5px);
-        }
-
-        @media (max-width: 1024px) {
-            .foundation-grid {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            .foundation-card {
-                padding-right: 0;
-                border-bottom: 1px solid var(--medium-gray);
-                padding-bottom: 40px;
-            }
-            .foundation-card:last-child {
-                border-bottom: none;
-            }
-        }
-
-        /* ============================================
-           CTA BANNER SECTION
-           ============================================ */
-        .cta-banner-section {
-            padding: 80px 0 40px;
-            background: #ffffff;
-        }
-
-        .cta-card {
-            background: var(--primary-green);
-            border-radius: 16px;
-            color: #ffffff;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(26, 77, 62, 0.15);
-        }
-
-        .cta-top {
-            padding: 48px 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .cta-info-wrap {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .cta-logo-box {
-            width: 72px;
-            height: 72px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .cta-logo-box img {
-            width: 48px;
-            height: auto;
-            filter: brightness(0) invert(1);
-        }
-
-        .cta-text-content h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .cta-text-content h4 span {
-            font-weight: 400;
-            opacity: 0.8;
-            font-size: 20px;
-        }
-
-        .cta-text-content p {
-            font-size: 16px;
-            opacity: 0.9;
-            max-width: 600px;
-            line-height: 1.5;
-        }
-
-        .cta-btn {
-            padding: 14px 32px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: #ffffff;
-            border-radius: 40px;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            background: var(--lime-green);
-            color: var(--primary-green);
-            transform: translateY(-2px);
-            border-color: var(--lime-green);
-        }
-
-        .cta-bottom {
-            padding: 28px 60px;
-            background: rgba(0, 0, 0, 0.15);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .cta-follow-text {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: -0.2px;
-        }
-
-        .cta-socials {
-            display: flex;
-            gap: 28px;
-        }
-
-        .cta-socials a {
-            color: #ffffff;
-            font-size: 20px;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-
-        .cta-socials a:hover {
-            opacity: 1;
-            transform: translateY(-3px);
-        }
-
-        @media (max-width: 1024px) {
-            .cta-top {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 40px;
-                gap: 30px;
-            }
-            .cta-bottom {
-                flex-direction: column;
-                gap: 24px;
-                align-items: flex-start;
-                padding: 32px 40px;
-            }
-            .cta-socials {
-                width: 100%;
-                justify-content: space-between;
-                gap: 15px;
-            }
-        }
-
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
-
-        @media (max-width: 1024px) {
-            .main-nav {
-                display: none;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-
-            .hero-title {
-                font-size: clamp(18px, 2.5vw, 32px);
-            }
-
-            .hero-deal {
-                font-size: clamp(36px, 6vw, 80px);
-            }
-
-            .hero-content {
-                padding: 80px 5vw 0 14vw;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                height: 80vh;
-                min-height: 600px;
-            }
-
-            .hero-title {
-                font-size: clamp(14px, 3vw, 22px);
-            }
-
-            .hero-deal {
-                font-size: clamp(28px, 6vw, 48px);
-            }
-
-            .hero-content {
-                padding: 70px 5vw 0 8vw;
-            }
-
-            .hero-tabs {
-                left: 5%;
-                width: 90%;
-                gap: 10px;
-                bottom: 20px;
-            }
-
-            .hero-tab {
-                font-size: 10px;
-            }
-
-            .hero__scroll-indicator {
-                display: none;
-            }
-
-            .nav-container {
-                padding: 0 25px;
-            }
+            .nav-links { display: none; }
+            .editorial-split { grid-template-columns: 1fr; gap: 40px; }
+            .editorial-img { height: 400px; }
+            .testimonial-card { flex: 0 0 85vw; padding: 40px; }
+            .testimonial-header { flex-direction: column; align-items: flex-start; gap: 20px; }
         }
     </style>
-    <base target="_blank">
 </head>
 
 <body>
 
-    <!-- ============================================
-         NAVIGATION HEADER
-         ============================================ -->
-    <nav class="top-nav" id="mainNav">
-        <div class="nav-container">
-            <a href="javascript:void(0)" onclick="showPage('home')" class="logo">
-                <img src="https://www.image2url.com/r2/default/images/1777216092994-c7e885df-05b1-48e6-b802-69a615cb8fff.png"
-                    alt="Simphiwe Mtetwa Logo" class="logo-white">
-                <img src="https://www.image2url.com/r2/default/images/1777649055436-1057d549-9fe6-4e04-b970-568610a4c0a0.png"
-                    alt="Simphiwe Mtetwa Logo" class="logo-black" style="display: none;">
+    <!-- Floating Glass Header -->
+    <header class="floating-header" id="mainHeader">
+        <a href="#" class="nav-logo">
+            <img src="https://www.image2url.com/r2/default/images/1777216092994-c7e885df-05b1-48e6-b802-69a615cb8fff.png" alt="Simphiwe Mtetwa">
+        </a>
+        
+        <ul class="nav-links">
+            <li><a href="#">Expertise</a></li>
+            <li><a href="#">Think Tank</a></li>
+            <li><a href="#">Podcast</a></li>
+            <li><a href="#">Magazine</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="#" class="btn btn-outline" style="padding: 10px 24px; font-size: 13px;">Contact</a>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-title-wrap reveal">
+            <div class="kicker-pill">Strategic Vision</div>
+            <h1>Dismantling Inequality.<br><span class="italic-accent">A 25-Year Vision</span> in Motion.</h1>
+            <p style="font-size: 20px; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px;">
+                We convert ambition into focused action. Transforming Corporate Social Investment frameworks across the continent.
+            </p>
+            <a href="#" class="btn btn-primary">
+                Discover our methodology
+                <div class="icon-circle"><i class="fas fa-arrow-right" style="color: var(--bg-dark); font-size: 12px;"></i></div>
             </a>
-
-            <div class="nav-right-wrap">
-                <ul class="main-nav">
-                    <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('about')">About</a></li>
-                    <li>
-                        <a href="https://simphiwemtetwa.africa/category/insight/">Think Tank <i
-                                class="vamtamtheme- vamtam-theme-arrow-dawn"
-                                style="font-size: 12px; margin-left: 5px;"></i></a>
-                        <ul class="dropdown">
-                            <li><a href="https://simphiwemtetwa.africa/category/environmental-resources/">Environmental
-                                    Resources</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/category/research/">Research</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/category/health-wellness/">Health & Wellness</a>
-                            </li>
-                            <li><a href="https://simphiwemtetwa.africa/category/nonprofit/">Nonprofit</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/category/sustainability/">Sustainability</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/category/philanthropy/">Philanthropy</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/category/technology/">Technology</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/category/employee-engagement/">Employee
-                                    Engagement</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/category/education/">Education</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Resources <i class="vamtamtheme- vamtam-theme-arrow-dawn"
-                                style="font-size: 12px; margin-left: 5px;"></i></a>
-                        <ul class="dropdown">
-                            <li><a href="https://simphiwemtetwa.africa/podcast/">Podcast</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/changemakers-library/">Changemakers Library</a>
-                            </li>
-                            <li><a href="https://simphiwemtetwa.africa/matter-magazine/">Matter Magazine</a></li>
-                            <li><a href="https://simphiwemtetwa.africa/legacy-conference/">Legacy Conference</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="javascript:void(0)" onclick="showPage('store')">Store</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('podcast')">Podcast</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('contact')">Contact</a></li>
-                </ul>
-
-                <div class="nav-actions">
-                    <i class="fas fa-search nav-icon"></i>
-
-                    <div class="vamtam-has-theme-widget-styles elementor-element elementor-element-051dd67 elementor-view-stacked elementor-shape-circle elementor-widget elementor-widget-icon"
-                        data-id="051dd67" data-element_type="widget" data-element_type="widget"
-                        data-widget_type="icon.default">
-                        <div class="elementor-widget-container">
-                            <div class="elementor-icon-wrapper">
-                                <a class="elementor-icon" href="javascript:void(0)" id="mobileToggle">
-                                    <i aria-hidden="true" class="vamtamtheme- vamtam-theme-nav"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Side Panel Drawer & Backdrop -->
-    <div class="side-panel-backdrop" id="sidePanelBackdrop"></div>
-    <div class="side-panel" id="sidePanel">
-        <div class="side-panel-close" id="closeSidePanel">
-            <i class="vamtamtheme- vamtam-theme-close"></i>
         </div>
 
-        <div class="side-panel-logo">
-            <img src="https://simphiwemtetwa.africa/wp-content/uploads/2024/04/Simphiwe-6.png"
-                alt="Simphiwe Mtetwa Logo">
-        </div>
-
-        <div class="side-panel-content">
-            <h3>Get In Touch</h3>
-            <p>Connect with Africa's leading source for Corporate Social Investment intelligence and impact.</p>
-
-            <div class="side-panel-contact">
-                <div class="side-panel-contact-item">
-                    <h4>Email Address</h4>
-                    <p>info@simphiwemtetwa.africa</p>
-                </div>
-                <div class="side-panel-contact-item">
-                    <h4>Office Location</h4>
-                    <p>Johannesburg, South Africa<br>Pan-African Reach</p>
-                </div>
-                <div class="side-panel-contact-item">
-                    <h4>Social Media</h4>
-                    <p>@csrnews_sa</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="side-panel-nav">
-            <ul>
-                <li><a href="javascript:void(0)" onclick="showPage('about')">Who We Are</a></li>
-                <li><a href="https://simphiwemtetwa.africa/category/insight/">Think Tank</a></li>
-                <li><a href="javascript:void(0)" onclick="showPage('podcast')">Podcast Series</a></li>
-                <li><a href="javascript:void(0)" onclick="showPage('store')">Official Store</a></li>
-            </ul>
-        </div>
-
-        <div class="side-panel-cta">
-            <a href="https://simphiwemtetwa.africa/contact-2/" class="btn btn-primary">Book a Consultation <i
-                    class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
-
-
-    <!-- ============================================
-         HERO SECTION - FEATURED ARTICLE SLIDER
-         ============================================ -->
-    <section class="hero-section">
-        <div class="hero-slider">
-            <!-- Slide 1 -->
-            <div class="hero-slide active" rtrvr-ls="Slide 1" rtrvr-ro="0" tabindex="0">
-                <picture>
-                    <source
-                        srcset="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-12-scaled.jpg"
-                        media="(max-width: 768px)">
-                    <img src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-12-scaled.jpg"
-                        alt="Inequality">
-                </picture>
-                <div class="hero-overlay">
-                    <div class="hero-content" style="padding-left: 10vw;">
-                        <span class="hero-tag">Social Justice</span>
-                        <h1 class="hero-title">
-                            Why Inequality Persists:<br>
-                            Slaves Made a Deal with<br>
-                            Their Masters and The<br>
-                            Children of The Slaves<br>
-                            Continue to uphold the<br>
-                            <span class="hero-deal">Masters' Deal</span>
-                        </h1>
-                        <a href="/insights/new-era-in-tech-investing-starts-now/" class="btn-line">
-                            Read more
-                            <i class="fas fa-arrow-right arrow-icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide" rtrvr-ls="Slide 2" rtrvr-ro="1" tabindex="-1">
-                <picture>
-                    <source
-                        srcset="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-10-scaled.jpg"
-                        media="(max-width: 768px)">
-                    <img src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-10-scaled.jpg"
-                        alt="Vision 2052">
-                </picture>
-                <div class="hero-overlay">
-                    <div class="hero-content" style="padding-left: 10vw;">
-                        <span class="hero-tag">Strategic Vision</span>
-                        <h1 class="hero-title">
-                            <span class="hero-main">A 25-Year</span><br>
-                            <span class="hero-sub">Vision in</span><br>
-                            <span class="hero-deal">Motion</span>
-                        </h1>
-                        <a href="/insights/topics/agentic-ai/" class="btn-line">
-                            Read the guide
-                            <i class="fas fa-arrow-right arrow-icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide slide-dark" rtrvr-ls="Slide 3" rtrvr-ro="2" tabindex="-1">
-                <div class="hero-overlay">
-                    <div class="hero-content" style="padding-left: 10vw;">
-                        <span class="hero-tag">Economic Impact</span>
-                        <h1 class="hero-title">
-                            <span class="hero-main">Unemployment Is Costing</span><br>
-                            <span class="hero-sub">South Africans</span><br>
-                            <span class="hero-deal">Half A Trillion Rand</span>
-                        </h1>
-                        <a href="/insights/cfos-funded-ai-revolution-now-they-are-joining-it/" class="btn-line">
-                            Read more
-                            <i class="fas fa-arrow-right arrow-icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="hero-slide" rtrvr-ls="Slide 4" rtrvr-ro="3" tabindex="-1">
-                <img src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-11-scaled.jpg"
-                    alt="Podcast">
-                <div class="hero-overlay">
-                    <div class="hero-content" style="padding-left: 10vw;">
-                        <span class="hero-tag">The Podcast</span>
-                        <h1 class="hero-title">
-                            <span class="hero-main">Conversations That</span><br>
-                            <span class="hero-sub">Shape The</span><br>
-                            <span class="hero-deal">Future of CSI</span>
-                        </h1>
-                        <a href="javascript:void(0)" onclick="showPage('podcast')" class="btn-line">
-                            Listen Now
-                            <i class="fas fa-arrow-right arrow-icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- HERO TABS - SWAPPED LAYOUT -->
-        <div class="hero-tabs">
-            <div class="hero-tab active" data-slide="0">
-                <div class="tab-progress"></div>
-                Social Justice
-            </div>
-            <div class="hero-tab" data-slide="1">
-                <div class="tab-progress"></div>
-                Vision 2052
-            </div>
-            <div class="hero-tab" data-slide="2">
-                <div class="tab-progress"></div>
-                Economic Impact
-            </div>
-            <div class="hero-tab" data-slide="3">
-                <div class="tab-progress"></div>
-                The Podcast
-            </div>
-        </div>
-
-        <div class="hero__scroll-indicator" id="scrollToNextSection">
-            <span class="hero__scroll-text">Scroll</span>
-            <i class="fas fa-chevron-down icon-chevron-down"></i>
+        <div class="hero-media">
+            <img src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-10-scaled.jpg" alt="Simphiwe Vision">
         </div>
     </section>
 
-    <!-- ============================================
-         IMPACT SECTION - WEF STYLE WITH BRAND COLORS
-         ============================================ -->
-    <section class="wef-impact-section">
-        <div class="wef-container">
-            <!-- HERO SPLIT: Text Left + Video Right -->
-            <div class="wef-hero-split">
-                <div class="wef-hero-text">
-                    <h2 class="wef-headline">Committed to dismantling inequality and driving measurable, noticeable
-                        change in South Africa over the next 25 years through transformative Corporate Social
-                        Investment.</h2>
-                    <a href="#" class="wef-link-btn">
-                        More about the Forum
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="wef-video-wrapper">
-                    <div class="wef-video-card">
-                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop"
-                            alt="Forum Event" class="wef-video-img">
-                        <div class="wef-video-darken"></div>
-                        <button class="wef-play-btn" aria-label="Play video">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        </button>
-                        <span class="wef-video-caption">Watch full video</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TABS BAR -->
-            <div class="wef-tabs-row">
-                <span class="wef-tabs-label">How we drive impact</span>
-                <div class="wef-tabs-group">
-                    <button class="wef-tab wef-tab-active">CSI Indaba</button>
-                    <button class="wef-tab">CSI Magazine</button>
-                    <button class="wef-tab">CSI Insight</button>
-                    <button class="wef-tab">CSI Legacy</button>
-                </div>
-            </div>
-
-            <!-- CONTENT GRID: Intro + Cards -->
-            <div class="wef-grid-layout">
-                <aside class="wef-sidebar">
-                    <p class="wef-sidebar-tag">ABOUT THE CENTRES</p>
-                    <h3 class="wef-sidebar-title">We tackle global challenges through our 11 Centres</h3>
-                    <p class="wef-sidebar-desc">Our Centre teams convert ambition into focused action through structured
-                        initiatives and insight generation.</p>
-                    <a href="#" class="wef-link-btn">
-                        More about our Centres
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </aside>
-                <div class="wef-cards-area">
-                    <article class="wef-card">
-                        <img src="https://images.unsplash.com/photo-1565514020176-6c2235c8e875?w=400&h=500&fit=crop"
-                            alt="Manufacturing" loading="lazy">
-                        <div class="wef-card-gradient"></div>
-                        <h4 class="wef-card-label">Centre for Advanced Manufacturing and Supply Chains</h4>
-                    </article>
-                    <article class="wef-card">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=500&fit=crop"
-                            alt="AI Excellence" loading="lazy">
-                        <div class="wef-card-gradient"></div>
-                        <h4 class="wef-card-label">Centre for AI Excellence</h4>
-                    </article>
-                    <article class="wef-card">
-                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=500&fit=crop"
-                            alt="Cybersecurity" loading="lazy">
-                        <div class="wef-card-gradient"></div>
-                        <h4 class="wef-card-label">Centre for Cybersecurity</h4>
-                    </article>
-                    <article class="wef-card">
-                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400&h=500&fit=crop"
-                            alt="Energy" loading="lazy">
-                        <div class="wef-card-gradient"></div>
-                        <h4 class="wef-card-label">Centre for Energy and Materials</h4>
-                    </article>
-                </div>
-            </div>
+    <!-- Editorial Split -->
+    <section class="editorial-split">
+        <div class="editorial-content reveal">
+            <span class="kicker">Our Approach</span>
+            <h2>We tackle global challenges through <span class="italic-accent">structured insight</span>.</h2>
+            <p>Our commitment to measurable change starts with a radical rethink of current frameworks. Sustainability is no longer a choice; it's the foundation of any enduring legacy.</p>
+            <a href="#" class="btn btn-outline">
+                Read the Manifesto
+                <div class="icon-circle"><i class="fas fa-arrow-right" style="color: var(--text-main); font-size: 12px;"></i></div>
+            </a>
+        </div>
+        <div class="editorial-img reveal" style="transition-delay: 0.2s;">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=1200&fit=crop" alt="Leadership">
         </div>
     </section>
 
-    <!-- ============================================
-         SCROLLING NEWS BANNER (Parallax)
-         ============================================ -->
-    <div class="news-banner-container">
-        <div class="news-scroll-track" id="newsTrack">
-            <!-- Plain News Scroll -->
-            <div class="news-item">
-                News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News
+    <!-- Horizontal Testimonials (Rechtdoorzee Style) -->
+    <section class="testimonial-section">
+        <div class="testimonial-header reveal">
+            <div>
+                <span class="kicker">Customer experiences</span>
+                <h2>Experiences of our partners</h2>
             </div>
-            <div class="news-item outline">
-                News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News
-            </div>
-            <div class="news-item">
-                News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News
-            </div>
-            <div class="news-item outline">
-                News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News <span class="news-dot"></span> News
+            <div class="slider-controls">
+                <button class="slider-btn" onclick="slideTestimonial(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn" onclick="slideTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
-    </div>
 
-
-    <!-- ============================================
-         SPOTLIGHT SECTION
-         ============================================ -->
-    <div class="wef-container" style="padding-top: 100px; padding-bottom: 100px; background: #ffffff;">
-        <div class="wef-tabs-row" style="margin-bottom: 0;">
-            <span class="wef-tabs-label">Spotlight</span>
-        </div>
-
-        <section class="spotlight-section">
-
-            <!-- LEFT: STICKY FEATURED (Story 1) -->
-            <div class="spotlight-sticky">
-                <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1200&h=1800&fit=crop"
-                    alt="Featured Spotlight" class="spotlight-sticky-img">
-                <div class="spotlight-overlay">
-                    <span class="spotlight-label">Featured Spotlight</span>
-                    <h2 class="spotlight-main-title">The Future of <br>African Impact <br>Investment</h2>
-                    <a href="#" class="btn-line">
-                        Read Full Feature
-                        <i class="fas fa-arrow-right arrow-icon"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- RIGHT: SCROLLABLE GRID (Stories 2-5) -->
-            <div class="spotlight-scrollable">
-                <div class="spotlight-grid">
-                    <!-- Story 2 -->
-                    <article class="spotlight-item">
-                        <div class="spotlight-img-box">
-                            <span class="spotlight-cat-tag">Leadership</span>
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=800&fit=crop"
-                                alt="Leadership">
-                        </div>
-                        <div class="spotlight-info">
-                            <div class="spotlight-meta">
-                                <span>May 2024</span>
-                            </div>
-                            <h3 class="spotlight-title">Dismantling Inequality: A 25-Year Vision</h3>
-                            <p class="spotlight-desc">Our commitment to measurable change starts with a radical rethink of Corporate Social Investment frameworks across the continent.</p>
-                        </div>
-                    </article>
-
-                    <!-- Story 3 -->
-                    <article class="spotlight-item">
-                        <div class="spotlight-img-box">
-                            <span class="spotlight-cat-tag">Environment</span>
-                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=800&fit=crop"
-                                alt="Sustainability">
-                        </div>
-                        <div class="spotlight-info">
-                            <div class="spotlight-meta">
-                                <span>April 2024</span>
-                            </div>
-                            <h3 class="spotlight-title">Green Legacies: Why Environment Matters Most</h3>
-                            <p class="spotlight-desc">Sustainability is no longer a choice; it's the foundation of any enduring legacy in the modern African business landscape.</p>
-                        </div>
-                    </article>
-
-                    <!-- Story 4 -->
-                    <article class="spotlight-item">
-                        <div class="spotlight-img-box">
-                            <span class="spotlight-cat-tag">Technology</span>
-                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&h=800&fit=crop"
-                                alt="Technology">
-                        </div>
-                        <div class="spotlight-info">
-                            <div class="spotlight-meta">
-                                <span>April 2024</span>
-                            </div>
-                            <h3 class="spotlight-title">AI for Good: Human-Centric Innovation</h3>
-                            <p class="spotlight-desc">Exploring how artificial intelligence can be harnessed to solve community-level challenges without losing the human touch.</p>
-                        </div>
-                    </article>
-
-                    <!-- Story 5 -->
-                    <article class="spotlight-item">
-                        <div class="spotlight-img-box">
-                            <span class="spotlight-cat-tag">Education</span>
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=800&fit=crop"
-                                alt="Education">
-                        </div>
-                        <div class="spotlight-info">
-                            <div class="spotlight-meta">
-                                <span>March 2024</span>
-                            </div>
-                            <h3 class="spotlight-title">The Classroom of 2050: Empowering Youth</h3>
-                            <p class="spotlight-desc">Investing in skills development today to ensure the leaders of tomorrow have the tools they need to thrive.</p>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="spotlight-footer">
-                    <span class="spotlight-count">5 Featured Stories</span>
-                    <button class="btn-show-more">View All Insights</button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-
-    <!-- ============================================
-         CTA NEWSLETTER BANNER
-         ============================================ -->
-    <section class="cta-banner-section">
-        <div class="wef-container">
-            <div class="cta-card">
-                <!-- Top: Newsletter Info -->
-                <div class="cta-top">
-                    <div class="cta-info-wrap">
-                        <div class="cta-logo-box">
-                            <img src="https://simphiwemtetwa.africa/wp-content/uploads/2024/04/Simphiwe-6.png" alt="Logo">
-                        </div>
-                        <div class="cta-text-content">
-                            <h4>Simphiwe Mtetwa <span>Insights newsletter</span></h4>
-                            <p>Bringing you weekly curated insights and analysis on the global issues that matter.</p>
+        <div class="testimonial-slider-wrapper">
+            <div class="testimonial-track" id="testiTrack">
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Working with Simphiwe has transformed how we approach community investment. His vision for 2052 isn't just a dream—it's a roadmap that we are actively building today."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop" alt="Johan" class="author-img">
+                        <div class="author-info">
+                            <h4>Johan de Vries</h4>
+                            <p>Founder, Green Impact SA</p>
                         </div>
                     </div>
-                    <a href="#" class="cta-btn">
-                        Subscribe today
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
                 </div>
-
-                <!-- Bottom: Social Bar -->
-                <div class="cta-bottom">
-                    <span class="cta-follow-text">Follow us wherever you get your content</span>
-                    <div class="cta-socials">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The clarity of thought and the systemic approach to solving inequality is what sets Simphiwe apart. His ability to connect strategy with grassroots impact is revolutionary."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop" alt="Sarah" class="author-img">
+                        <div class="author-info">
+                            <h4>Sarah Nkosi</h4>
+                            <p>Director of Sustainability, TechAfrica</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"A deep dive into the socio-economic realities of Africa. The podcast alone has reshaped our board's approach to ESG reporting."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop" alt="Michael" class="author-img">
+                        <div class="author-info">
+                            <h4>Michael Ndlovu</h4>
+                            <p>CEO, Pan-African Ventures</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         FOUNDATION INFO SECTION
-         ============================================ -->
-    <section class="foundation-section">
-        <div class="wef-container">
-            <div class="wef-tabs-row" style="margin-bottom: 0; border-bottom: 1px solid var(--medium-gray); padding-bottom: 24px;">
-                <span class="wef-tabs-label">More about Simphiwe Mtetwa</span>
-            </div>
-
-            <div class="foundation-grid">
-                <!-- Our Role -->
-                <div class="foundation-card">
-                    <div class="foundation-card-img">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=400&fit=crop" alt="Our Role">
-                    </div>
-                    <h3>Our Role</h3>
-                    <p>For over 25 years, the Gates Foundation has been committed to fighting the greatest inequities in the world.</p>
-                    <a href="#" class="foundation-link">
-                        Learn more
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- How We Work -->
-                <div class="foundation-card">
-                    <div class="foundation-card-img">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="How we Work">
-                    </div>
-                    <h3>How we Work</h3>
-                    <p>We are focused on results. Those that can be measured. And those measured in ways beyond numbers.</p>
-                    <a href="#" class="foundation-link">
-                        Learn more
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Our Story -->
-                <div class="foundation-card">
-                    <div class="foundation-card-img">
-                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&h=400&fit=crop" alt="Our Story">
-                    </div>
-                    <h3>Our Story</h3>
-                    <p>Learn about the origins of the foundation and the values that drive our work.</p>
-                    <a href="#" class="foundation-link">
-                        Learn more
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <!-- Massive CTA Footer -->
+    <section class="massive-cta reveal">
+        <span class="kicker">Ready to engage?</span>
+        <h2><span class="italic-accent">Shape the</span> Future</h2>
+        <a href="#" class="btn btn-primary" style="padding: 20px 40px; font-size: 18px;">
+            Book a Consultation
+            <div class="icon-circle"><i class="fas fa-arrow-right" style="color: var(--bg-dark);"></i></div>
+        </a>
     </section>
 
-    <!-- ============================================
-         JAVASCRIPT FUNCTIONALITY
-         ============================================ -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Navigation scroll effect
-            const nav = document.getElementById('mainNav');
-            window.addEventListener('scroll', () => {
-                const logoWhite = document.querySelector('.logo-white');
-                const logoBlack = document.querySelector('.logo-black');
+        // Scroll Reveal Logic
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-                if (window.scrollY > 50) {
-                    nav.classList.add('scrolled');
-                    if (logoWhite) logoWhite.style.display = 'none';
-                    if (logoBlack) logoBlack.style.display = 'block';
-                } else {
-                    nav.classList.remove('scrolled');
-                    if (logoWhite) logoWhite.style.display = 'block';
-                    if (logoBlack) logoBlack.style.display = 'none';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
             });
+        }, observerOptions);
 
-            // Scrolling News Banner - Mouse Scroll Parallax
-            const newsTrack = document.getElementById('newsTrack');
-            window.addEventListener('scroll', () => {
-                if (newsTrack) {
-                    const scrollPos = window.scrollY;
-                    const sectionOffset = newsTrack.parentElement.offsetTop;
-                    const windowHeight = window.innerHeight;
-                    
-                    // Animate based on scroll relative to the section
-                    if (scrollPos > sectionOffset - windowHeight && scrollPos < sectionOffset + windowHeight) {
-                        const movement = (scrollPos - sectionOffset) * 0.8;
-                        newsTrack.style.transform = `translateX(${-movement}px)`;
-                    }
-                }
-            });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-            // Side Panel Implementation
-            const mobileToggle = document.getElementById('mobileToggle');
-            const closeSidePanel = document.getElementById('closeSidePanel');
-            const sidePanel = document.getElementById('sidePanel');
-            const backdrop = document.getElementById('sidePanelBackdrop');
-
-            if (mobileToggle) {
-                mobileToggle.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    sidePanel.classList.add('active');
-                    backdrop.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-
-            if (closeSidePanel) {
-                closeSidePanel.addEventListener('click', () => {
-                    sidePanel.classList.remove('active');
-                    backdrop.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-
-            if (backdrop) {
-                backdrop.addEventListener('click', () => {
-                    sidePanel.classList.remove('active');
-                    backdrop.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-
-            // Hero Slider Functionality
-            const slides = document.querySelectorAll('.hero-slide');
-            const tabs = document.querySelectorAll('.hero-tab');
-            const progressBars = document.querySelectorAll('.tab-progress');
-            let currentSlide = 0;
-            let slideInterval;
-            let progressInterval;
-            let startTime;
-            const duration = 6000;
-
-            function startSlider() {
-                startTime = Date.now();
-                updateProgress();
-                slideInterval = setInterval(nextSlide, duration);
-            }
-
-            function updateProgress() {
-                if (progressInterval) clearInterval(progressInterval);
-                progressInterval = setInterval(() => {
-                    const elapsed = Date.now() - startTime;
-                    const progress = Math.min((elapsed / duration) * 100, 100);
-                    if (progressBars[currentSlide]) {
-                        progressBars[currentSlide].style.width = progress + '%';
-                    }
-                }, 50);
-            }
-
-            function showSlide(index) {
-                if (!slides[index]) return;
-                slides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                    if (tabs[i]) tabs[i].classList.remove('active');
-                    if (progressBars[i]) progressBars[i].style.width = '0%';
-                });
-
-                slides[index].classList.add('active');
-                if (tabs[index]) tabs[index].classList.add('active');
-                currentSlide = index;
-                startTime = Date.now();
-                updateProgress();
-
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, duration);
-            }
-
-            function nextSlide() {
-                let next = (currentSlide + 1) % slides.length;
-                showSlide(next);
-            }
-
-            tabs.forEach((tab, index) => {
-                tab.addEventListener('click', () => {
-                    showSlide(index);
-                });
-            });
-
-            if (slides.length > 0) startSlider();
-
-            const scrollBtn = document.getElementById('scrollToNextSection');
-            if (scrollBtn) {
-                scrollBtn.addEventListener('click', () => {
-                    const nextSection = document.querySelector('.news-banner-container');
-                    if (nextSection) {
-                        const navHeight = 80;
-                        const top = nextSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                        window.scrollTo({ top: top, behavior: 'smooth' });
-                    }
-                });
+        // Floating Header Logic
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
 
-        function showPage(pageId) {
-            console.log('Navigating to:', pageId);
-            window.scrollTo(0, 0);
+        // Testimonial Slider Logic
+        const track = document.getElementById('testiTrack');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function slideTestimonial(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            // Prevent scrolling past the last full card (viewport math simplified)
+            if (currentSlide >= totalSlides - 1) currentSlide = totalSlides - 1; 
+
+            // Calculate width including gap
+            const cardWidth = track.children[0].offsetWidth;
+            const gap = 30;
+            const translation = currentSlide * (cardWidth + gap);
+            
+            track.style.transform = `translateX(-${translation}px)`;
         }
+        
+        // Initial load animations trigger
+        setTimeout(() => {
+            document.querySelector('.hero-title-wrap').classList.add('active');
+        }, 100);
     </script>
-
 </body>
-
 </html>
